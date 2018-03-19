@@ -1,16 +1,20 @@
 package parsing_json;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.oracle.javafx.jmx.json.JSONReader;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ElementCollection {
+public class ElementCollection extends ArrayList{
     //I approach to solving the problem was to read the json file, create an arraylist which holds Element object
     //Each element object will then hold all the properties associated with the Element object(name, atomic_number etc
     //After that by the getters defined in the Element class, it would be easy to retrieve the properties of an element.
@@ -40,11 +44,6 @@ public class ElementCollection {
         for(Element elements:periodicTableOfElements){
             //if()
         }
-        return null;
-    }
-    public File readRawDataToString() throws Exception {
-        ClassLoader classLoader = new ElementCollection().getClass().getClassLoader();
-      //  File result = new File(classLoader.getResource("resources/periodic_table.json"));
         return null;
     }
     public ArrayList<String> parseRawDataIntoStringArray(String rawData) {
@@ -213,10 +212,13 @@ public class ElementCollection {
                phase,source,spectral_img,summary,symbol,xpos,ypos,shells);
    }
 
-    public ArrayList<Element> generateArrayListOfElements(){
-        ArrayList<Element>periodicTableElements = new ArrayList<>();
-
-        return periodicTableElements;
+    public ArrayList<Element> generateArrayListOfElements() throws FileNotFoundException {
+        Type Element_Type = new TypeToken<List<Element>>() {
+        }.getType();
+        Gson gson = new Gson();
+        JSONReader reader = (JSONReader) new JsonReader(new FileReader("periodic_table.json"));
+        ElementCollection periodicTableOfElements= gson.fromJson((JsonElement) reader,ElementCollection.class);
+        return periodicTableOfElements;
     }
 
 //   ElementCollection parser = new ElementCollection();
@@ -225,6 +227,7 @@ public class ElementCollection {
 //        JsonReader reader = new JSONReader(new FileReader("periodic_table.json"));
 //    }
 //
+
 
 
 
