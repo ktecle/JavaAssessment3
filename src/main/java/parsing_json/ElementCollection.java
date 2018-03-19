@@ -38,7 +38,7 @@ public class ElementCollection {
     public ElementCollection where(String fieldName, Object value) {
         int counter = 0;
         for(Element elements:periodicTableOfElements){
-            if()
+            //if()
         }
         return null;
     }
