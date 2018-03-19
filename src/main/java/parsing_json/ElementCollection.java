@@ -7,11 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ElementCollection {
+    //I approach to solving the problem was to read the json file, create an arraylist which holds Element object
+    //Each element object will then hold all the properties associated with the Element object(name, atomic_number etc
+    //After that by the getters defined in the Element class, it would be easy to retrieve the properties of an element.
+    //However I am not able to popoluate my arraylist as I couldn't read the Json file.
 
     public ArrayList<Element>periodicTableOfElements;
 
@@ -33,37 +36,20 @@ public class ElementCollection {
     }
 
     public ElementCollection where(String fieldName, Object value) {
+        int counter = 0;
+        for(Element elements:periodicTableOfElements){
+            if()
+        }
         return null;
     }
-
-
-
     public File readRawDataToString() throws Exception {
         ClassLoader classLoader = new ElementCollection().getClass().getClassLoader();
-        File result = new File(classLoader.getResource("resources/periodic_table.json"));
-        return result;
+      //  File result = new File(classLoader.getResource("resources/periodic_table.json"));
+        return null;
     }
-
-    public static void main(String[] args) throws Exception {
-        File output = (new ElementCollection()).readRawDataToString();
-        System.out.println(output);
-
-        ElementCollection collecter  = new ElementCollection();
-
-        ArrayList<String> ElementList = collecter.parseRawDataIntoStringArray(output);
-
-    }
-
     public ArrayList<String> parseRawDataIntoStringArray(String rawData) {
-        String stringPattern = "(},)?";
+        String stringPattern = "},";
         ArrayList<String> response = splitStringWithRegexPattern(stringPattern, rawData);
-        return response;
-    }
-
-
-    public ArrayList<String> findKeyValuePairsInRawItemData(String rawItem) {
-        String stringPattern = "[:]";
-        ArrayList<String> response = splitStringWithRegexPattern(stringPattern, rawItem);
         return response;
     }
 
@@ -198,47 +184,47 @@ public class ElementCollection {
         return null;
         //return new ArrayList<Integer>(Arrays.asList(shells.split(",")))
     }
-    //to hold all the elements
-    //key- name of the element
-    //value- Element object
+   // creates an instance of Element by calling the Element class constructor and passing all
+   //attributes of an element.
+   public Element parseStringIntoElement(String element) {
+       String name = findName(element);
+       String appearance = findAppearance(element);
+       Double atomicMass = findAtomicMass(element);
+       Double boil = findBoil(element);
+       String category=findCategory(element);
+       String color=findColor(element);
+       Double density=findDensity(element);
+       String discovered_by=findDiscoveredBy(element);
+       Double melt=findMelt(element);
+       Double molar_heat=findMolarHeat(element);
+       String named_by=findNamedBy(element);
+       Integer number=findNumber(element);
+       Integer period=findPeriod(element);
+       String phase=findPhase(element);
+       String source=findSource(element);
+       String spectral_img=findSpectralImg(element);
+       String summary=findSumary(element);
+       String symbol=findSymbol(element);
+       Integer xpos=findXpos(element);
+       Integer ypos=findYpos(element);
+       ArrayList<Integer> shells=findShells(element);
+       return new Element(name,appearance,atomicMass,boil,category,color,
+               density,discovered_by,melt,molar_heat,named_by,number,period,
+               phase,source,spectral_img,summary,symbol,xpos,ypos,shells);
+   }
 
-    public Element parseStringIntoElement(String element) {
-        String name = findName(element);
-        String appearance = findAppearance(element);
-        Double atomicMass = findAtomicMass(element);
-         Double boil = findBoil(element);
-        String category=findCategory(element);
-        String color=findColor(element);
-         Double density=findDensity(element);
-         String discovered_by=findDiscoveredBy(element);
-         Double melt=findMelt(element);
-         Double molar_heat=findMolarHeat(element);
-         String named_by=findNamedBy(element);
-         Integer number=findNumber(element);
-         Integer period=findPeriod(element);
-         String phase=findPhase(element);
-         String source=findSource(element);
-         String spectral_img=findSpectralImg(element);
-         String summary=findSumary(element);
-         String symbol=findSymbol(element);
-         Integer xpos=findXpos(element);
-         Integer ypos=findYpos(element);
-         ArrayList<Integer> shells=findShells(element);
-         return new Element(name,appearance,atomicMass,boil,category,color,
-                 density,discovered_by,melt,molar_heat,named_by,number,period,
-                 phase,source,spectral_img,summary,symbol,xpos,ypos,shells);
-    }
     public ArrayList<Element> generateArrayListOfElements(){
         ArrayList<Element>periodicTableElements = new ArrayList<>();
 
         return periodicTableElements;
     }
-   ElementCollection parser = new ElementCollection();
-    public void readFile() throws FileNotFoundException{
-        Gson gson = new Gson();
-        JsonReader reader = new JSONReader(new FileReader("periodic_table.json"));
-    }
 
+//   ElementCollection parser = new ElementCollection();
+//    public void readFile() throws FileNotFoundException{
+//        Gson gson = new Gson();
+//        JsonReader reader = new JSONReader(new FileReader("periodic_table.json"));
+//    }
+//
 
 
 
