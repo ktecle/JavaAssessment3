@@ -8,8 +8,6 @@ public class ElementCollection extends ArrayList<Element> {
     //After that by the getters defined in the Element class, it would be easy to retrieve the properties of an element.
     //However I am not able to popoluate my arraylist as I couldn't read the Json file.
 
-    public ArrayList<Element> periodicTableOfElements;
-
     public Element findByAtomicNumber(int atomic_number) {
 
         while (super.listIterator().hasNext()) {
@@ -35,7 +33,7 @@ public class ElementCollection extends ArrayList<Element> {
 
     public ElementCollection where(String fieldName, Object value) {
         int counter = 0;
-        for (Element elements : periodicTableOfElements) {
+        for (int i =0;i<this.size();i++) {
             //if()
         }
         return null;

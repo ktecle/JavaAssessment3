@@ -14,22 +14,22 @@ public class Element {
     private Double melt;
     private Double molar_heat;
     private String named_by;
-    private Integer number;
-    private Integer period;
+    private int number;
+    private int period;
     private String phase;
     private String source;
     private String spectral_img;
     private String summary;
     private String symbol;
-    private Integer xpos;
-    private Integer ypos;
+    private int xpos;
+    private int ypos;
     private ArrayList<Integer> shells;
 
     public Element(String name,String appearance,Double atomicMass,Double boil,
                    String category,String color,Double density,String discovered_by,Double melt,
-                   Double molar_heat,String named_by,Integer number,Integer period,String phase,
-                   String source,String spectral_img,String summary,String symbol,Integer xpos,
-                   Integer ypos,ArrayList<Integer>shells){
+                   Double molar_heat,String named_by,int number,int period,String phase,
+                   String source,String spectral_img,String summary,String symbol,int xpos,
+                   int ypos,ArrayList<Integer>shells){
         this.name = name;
         this.appearance=appearance;
         this.atomicMass=atomicMass;
@@ -63,14 +63,14 @@ public class Element {
     public Double getMelt(){return this.melt;}
     public Double getMolar_heat(){return this.molar_heat;}
     public String getNamed_by(){return this.named_by;}
-    public Integer getNumber(){return this.number;}
-    public Integer getPeriod(){return this.period;}
+    public int getNumber(){return this.number;}
+    public int     getPeriod(){return this.period;}
     public String getPhase(){return this.phase;}
     public String getSource(){return this.source;}
     public String getSpectral_img(){return this.spectral_img;}
     public String getSummary(){return this.summary;}
     public String getSymbol(){return this.symbol;}
-    public Integer getXpos(){return this.xpos;}
-    public Integer getYpos() { return this.ypos; }
+    public int getXpos(){return this.xpos;}
+    public int getYpos() { return this.ypos; }
     public ArrayList<Integer> getShells() { return this.shells; }
 }
