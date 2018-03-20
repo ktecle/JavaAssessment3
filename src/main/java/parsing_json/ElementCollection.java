@@ -1,8 +1,6 @@
 package parsing_json;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ElementCollection extends ArrayList<Element> {
     //My approach to solving the problem was to read the json file, create an arraylist which holds Element object

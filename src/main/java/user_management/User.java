@@ -5,14 +5,14 @@ import user_management.security.Password;
 public class User {
     private String name;
     private String email;
-    private String password;
+    private Password password;
     private int id;
 
     public User(int id, String name,String email,String password){
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = new Password(password);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class User {
     public void setEmail(String email){
         this.email = email;
     }
-    public void setPassword(String password){
+    public void setPassword(Password password){
         this.password = password;
     }
     public void setId(int id){
@@ -44,7 +44,7 @@ public class User {
     public String getEmail(){
         return this.email;
     }
-    public String getPassword(){
+    public Password getPassword(){
         return this.password;
     }
     public int getId(){

@@ -1,36 +1,36 @@
 package user_management;
 
+import user_management.security.UserAuthenticationFailedException;
 import user_management.validation.EmailNotAvailableException;
 import user_management.validation.InvalidEmailException;
+import user_management.validation.PasswordTooSimpleException;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserCollection {
-
-    ArrayList<User>listOfUsers = new ArrayList<>();
+public class UserCollection extends ArrayList<User>{
 
     public User findById(int id) {
-        for(User user: listOfUsers){
-            if(user.getId()==id){
-                return user;
+        for(int i=0;i<this.size();i++){
+            if(this.get(i).getId()==id){
+                return this.get(i);
             }
         }
         return null;
     }
 
     public User findByEmail(String email) {
-        for(User user: listOfUsers){
-            if(user.getEmail().equals(email)){
-                return user;
+        for(int i=0;i<this.size();i++){
+            if(this.get(i).getEmail().equals(email)){
+                return this.get(i);
             }
         }
         return null;
     }
 
-    public User attemptLogin(String email, String password) {
-        for(User user: listOfUsers){
+    public User attemptLogin(String email, String password) throws UserAuthenticationFailedException{
+        for(User user: this){
             if(user.getEmail().equals(email)&& user.getPassword().equals(password)&&
                     (user.getPassword().hashCode()==password.hashCode())){
                 return user;
@@ -39,17 +39,17 @@ public class UserCollection {
         return null;
     }
 
-    public int createUser(String name, String email, String password) throws EmailNotAvailableException, InvalidEmailException {
+    public int createUser(String name, String email, String password) throws EmailNotAvailableException, InvalidEmailException,PasswordTooSimpleException {
         User newUser;
-        for(User user : listOfUsers){
+        for(User user : this){
             if(user.getEmail().equals(email)){
                 throw new EmailNotAvailableException();
             }else if((email.contains("!#$%^&*()<>?"))||!isSubstring(email,name)) {
                 throw new InvalidEmailException();
             }else{
-                int newId = listOfUsers.size()+1;
+                int newId = this.size()+1;
                newUser  = new User(newId,name,email,password);
-                listOfUsers.add(newUser);
+                this.add(newUser);
                 return newUser.getId();
             }
         }
