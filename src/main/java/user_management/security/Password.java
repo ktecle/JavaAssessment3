@@ -2,9 +2,10 @@ package user_management.security;
 
 public class Password {
     private final static int workload = 12;
+    public String hash;
 
     public Password(String password) {
-        //this.hash = hashPassword(password);
+        this.hash = hashPassword(password);
     }
 
     public static String hashPassword(String password_plaintext) {

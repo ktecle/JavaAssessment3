@@ -39,7 +39,8 @@ public class UserCollection extends ArrayList<User>{
         return null;
     }
 
-    public int createUser(String name, String email, String password) throws EmailNotAvailableException, InvalidEmailException,PasswordTooSimpleException {
+    public int createUser(String name, String email, String password) throws EmailNotAvailableException,
+                            InvalidEmailException,PasswordTooSimpleException {
         User newUser;
         for(User user : this){
             if(user.getEmail().equals(email)){
